@@ -98,11 +98,16 @@ typedef struct param_union_extended {
  * This structure is required to make the mavlink_send_xxx convenience functions
  * work, as it tells the library what the current system and component ID are.
  */
+#ifndef MAVLINK_ENUM_MAVLINK_SYSTEM
+#define MAVLINK_ENUM_MAVLINK_SYSTEM
+
 MAVPACKED(
 typedef struct __mavlink_system {
     uint8_t sysid;   ///< Used by the MAVLink message_xx_send() convenience function
     uint8_t compid;  ///< Used by the MAVLink message_xx_send() convenience function
 }) mavlink_system_t;
+
+#endif
 
 MAVPACKED(
 typedef struct __mavlink_message {
