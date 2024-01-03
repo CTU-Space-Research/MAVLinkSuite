@@ -1,0 +1,540 @@
+<?xml version="1.0"?>
+<mavlink>
+  <version>3</version>
+  <enums>
+    <enum name="MAV_AUTOPILOT">
+      <description>Micro air vehicle / autopilot classes. This identifies the individual model.</description>
+      <entry value="0" name="MAV_AUTOPILOT_GENERIC">
+        <description>Generic autopilot, full support for everything</description>
+      </entry>
+      <entry value="1" name="MAV_AUTOPILOT_RESERVED">
+        <description>Reserved for future use.</description>
+      </entry>
+      <entry value="2" name="MAV_AUTOPILOT_SLUGS">
+        <description>SLUGS autopilot, http://slugsuav.soe.ucsc.edu</description>
+      </entry>
+      <entry value="3" name="MAV_AUTOPILOT_ARDUPILOTMEGA">
+        <description>ArduPilot - Plane/Copter/Rover/Sub/Tracker, https://ardupilot.org</description>
+      </entry>
+      <entry value="4" name="MAV_AUTOPILOT_OPENPILOT">
+        <description>OpenPilot, http://openpilot.org</description>
+      </entry>
+      <entry value="5" name="MAV_AUTOPILOT_GENERIC_WAYPOINTS_ONLY">
+        <description>Generic autopilot only supporting simple waypoints</description>
+      </entry>
+      <entry value="6" name="MAV_AUTOPILOT_GENERIC_WAYPOINTS_AND_SIMPLE_NAVIGATION_ONLY">
+        <description>Generic autopilot supporting waypoints and other simple navigation commands</description>
+      </entry>
+      <entry value="7" name="MAV_AUTOPILOT_GENERIC_MISSION_FULL">
+        <description>Generic autopilot supporting the full mission command set</description>
+      </entry>
+      <entry value="8" name="MAV_AUTOPILOT_INVALID">
+        <description>No valid autopilot, e.g. a GCS or other MAVLink component</description>
+      </entry>
+      <entry value="9" name="MAV_AUTOPILOT_PPZ">
+        <description>PPZ UAV - http://nongnu.org/paparazzi</description>
+      </entry>
+      <entry value="10" name="MAV_AUTOPILOT_UDB">
+        <description>UAV Dev Board</description>
+      </entry>
+      <entry value="11" name="MAV_AUTOPILOT_FP">
+        <description>FlexiPilot</description>
+      </entry>
+      <entry value="12" name="MAV_AUTOPILOT_PX4">
+        <description>PX4 Autopilot - http://px4.io/</description>
+      </entry>
+      <entry value="13" name="MAV_AUTOPILOT_SMACCMPILOT">
+        <description>SMACCMPilot - http://smaccmpilot.org</description>
+      </entry>
+      <entry value="14" name="MAV_AUTOPILOT_AUTOQUAD">
+        <description>AutoQuad -- http://autoquad.org</description>
+      </entry>
+      <entry value="15" name="MAV_AUTOPILOT_ARMAZILA">
+        <description>Armazila -- http://armazila.com</description>
+      </entry>
+      <entry value="16" name="MAV_AUTOPILOT_AEROB">
+        <description>Aerob -- http://aerob.ru</description>
+      </entry>
+      <entry value="17" name="MAV_AUTOPILOT_ASLUAV">
+        <description>ASLUAV autopilot -- http://www.asl.ethz.ch</description>
+      </entry>
+      <entry value="18" name="MAV_AUTOPILOT_SMARTAP">
+        <description>SmartAP Autopilot - http://sky-drones.com</description>
+      </entry>
+      <entry value="19" name="MAV_AUTOPILOT_AIRRAILS">
+        <description>AirRails - http://uaventure.com</description>
+      </entry>
+      <entry value="20" name="MAV_AUTOPILOT_REFLEX">
+        <description>Fusion Reflex - https://fusion.engineering</description>
+      </entry>
+    </enum>
+    <enum name="MAV_TYPE">
+      <description>MAVLINK component type reported in HEARTBEAT message. Flight controllers must report the type of the vehicle on which they are mounted (e.g. MAV_TYPE_OCTOROTOR). All other components must report a value appropriate for their type (e.g. a camera must use MAV_TYPE_CAMERA).</description>
+      <entry value="0" name="MAV_TYPE_GENERIC">
+        <description>Generic micro air vehicle</description>
+      </entry>
+      <entry value="1" name="MAV_TYPE_FIXED_WING">
+        <description>Fixed wing aircraft.</description>
+      </entry>
+      <entry value="2" name="MAV_TYPE_QUADROTOR">
+        <description>Quadrotor</description>
+      </entry>
+      <entry value="3" name="MAV_TYPE_COAXIAL">
+        <description>Coaxial helicopter</description>
+      </entry>
+      <entry value="4" name="MAV_TYPE_HELICOPTER">
+        <description>Normal helicopter with tail rotor.</description>
+      </entry>
+      <entry value="5" name="MAV_TYPE_ANTENNA_TRACKER">
+        <description>Ground installation</description>
+      </entry>
+      <entry value="6" name="MAV_TYPE_GCS">
+        <description>Operator control unit / ground control station</description>
+      </entry>
+      <entry value="7" name="MAV_TYPE_AIRSHIP">
+        <description>Airship, controlled</description>
+      </entry>
+      <entry value="8" name="MAV_TYPE_FREE_BALLOON">
+        <description>Free balloon, uncontrolled</description>
+      </entry>
+      <entry value="9" name="MAV_TYPE_ROCKET">
+        <description>Rocket</description>
+      </entry>
+      <entry value="10" name="MAV_TYPE_GROUND_ROVER">
+        <description>Ground rover</description>
+      </entry>
+      <entry value="11" name="MAV_TYPE_SURFACE_BOAT">
+        <description>Surface vessel, boat, ship</description>
+      </entry>
+      <entry value="12" name="MAV_TYPE_SUBMARINE">
+        <description>Submarine</description>
+      </entry>
+      <entry value="13" name="MAV_TYPE_HEXAROTOR">
+        <description>Hexarotor</description>
+      </entry>
+      <entry value="14" name="MAV_TYPE_OCTOROTOR">
+        <description>Octorotor</description>
+      </entry>
+      <entry value="15" name="MAV_TYPE_TRICOPTER">
+        <description>Tricopter</description>
+      </entry>
+      <entry value="16" name="MAV_TYPE_FLAPPING_WING">
+        <description>Flapping wing</description>
+      </entry>
+      <entry value="17" name="MAV_TYPE_KITE">
+        <description>Kite</description>
+      </entry>
+      <entry value="18" name="MAV_TYPE_ONBOARD_CONTROLLER">
+        <description>Onboard companion controller</description>
+      </entry>
+      <entry value="19" name="MAV_TYPE_VTOL_TAILSITTER_DUOROTOR">
+        <description>Two-rotor Tailsitter VTOL that additionally uses control surfaces in vertical operation. Note, value previously named MAV_TYPE_VTOL_DUOROTOR.</description>
+      </entry>
+      <entry value="20" name="MAV_TYPE_VTOL_TAILSITTER_QUADROTOR">
+        <description>Quad-rotor Tailsitter VTOL using a V-shaped quad config in vertical operation. Note: value previously named MAV_TYPE_VTOL_QUADROTOR.</description>
+      </entry>
+      <entry value="21" name="MAV_TYPE_VTOL_TILTROTOR">
+        <description>Tiltrotor VTOL. Fuselage and wings stay (nominally) horizontal in all flight phases. It able to tilt (some) rotors to provide thrust in cruise flight.</description>
+      </entry>
+      <entry value="22" name="MAV_TYPE_VTOL_FIXEDROTOR">
+        <description>VTOL with separate fixed rotors for hover and cruise flight. Fuselage and wings stay (nominally) horizontal in all flight phases.</description>
+      </entry>
+      <entry value="23" name="MAV_TYPE_VTOL_TAILSITTER">
+        <description>Tailsitter VTOL. Fuselage and wings orientation changes depending on flight phase: vertical for hover, horizontal for cruise. Use more specific VTOL MAV_TYPE_VTOL_DUOROTOR or MAV_TYPE_VTOL_QUADROTOR if appropriate.</description>
+      </entry>
+      <entry value="24" name="MAV_TYPE_VTOL_TILTWING">
+        <description>Tiltwing VTOL. Fuselage stays horizontal in all flight phases. The whole wing, along with any attached engine, can tilt between vertical and horizontal mode.</description>
+      </entry>
+      <!-- Entry 25 reserved for other VTOL airframe -->
+      <entry value="25" name="MAV_TYPE_VTOL_RESERVED5">
+        <description>VTOL reserved 5</description>
+      </entry>
+      <entry value="26" name="MAV_TYPE_GIMBAL">
+        <description>Gimbal</description>
+      </entry>
+      <entry value="27" name="MAV_TYPE_ADSB">
+        <description>ADSB system</description>
+      </entry>
+      <entry value="28" name="MAV_TYPE_PARAFOIL">
+        <description>Steerable, nonrigid airfoil</description>
+      </entry>
+      <entry value="29" name="MAV_TYPE_DODECAROTOR">
+        <description>Dodecarotor</description>
+      </entry>
+      <entry value="30" name="MAV_TYPE_CAMERA">
+        <description>Camera</description>
+      </entry>
+      <entry value="31" name="MAV_TYPE_CHARGING_STATION">
+        <description>Charging station</description>
+      </entry>
+      <entry value="32" name="MAV_TYPE_FLARM">
+        <description>FLARM collision avoidance system</description>
+      </entry>
+      <entry value="33" name="MAV_TYPE_SERVO">
+        <description>Servo</description>
+      </entry>
+      <entry value="34" name="MAV_TYPE_ODID">
+        <description>Open Drone ID. See https://mavlink.io/en/services/opendroneid.html.</description>
+      </entry>
+      <entry value="35" name="MAV_TYPE_DECAROTOR">
+        <description>Decarotor</description>
+      </entry>
+      <entry value="36" name="MAV_TYPE_BATTERY">
+        <description>Battery</description>
+      </entry>
+      <entry value="37" name="MAV_TYPE_PARACHUTE">
+        <description>Parachute</description>
+      </entry>
+      <entry value="38" name="MAV_TYPE_LOG">
+        <description>Log</description>
+      </entry>
+      <entry value="39" name="MAV_TYPE_OSD">
+        <description>OSD</description>
+      </entry>
+      <entry value="40" name="MAV_TYPE_IMU">
+        <description>IMU</description>
+      </entry>
+      <entry value="41" name="MAV_TYPE_GPS">
+        <description>GPS</description>
+      </entry>
+      <entry value="42" name="MAV_TYPE_WINCH">
+        <description>Winch</description>
+      </entry>
+      <entry value="43" name="MAV_TYPE_GENERIC_MULTIROTOR">
+        <description>Generic multirotor that does not fit into a specific type or whose type is unknown</description>
+      </entry>
+    </enum>
+    <enum name="MAV_MODE_FLAG" bitmask="true">
+      <description>These flags encode the MAV mode.</description>
+      <entry value="128" name="MAV_MODE_FLAG_SAFETY_ARMED">
+        <description>0b10000000 MAV safety set to armed. Motors are enabled / running / can start. Ready to fly. Additional note: this flag is to be ignore when sent in the command MAV_CMD_DO_SET_MODE and MAV_CMD_COMPONENT_ARM_DISARM shall be used instead. The flag can still be used to report the armed state.</description>
+      </entry>
+      <entry value="64" name="MAV_MODE_FLAG_MANUAL_INPUT_ENABLED">
+        <description>0b01000000 remote control input is enabled.</description>
+      </entry>
+      <entry value="32" name="MAV_MODE_FLAG_HIL_ENABLED">
+        <description>0b00100000 hardware in the loop simulation. All motors / actuators are blocked, but internal software is full operational.</description>
+      </entry>
+      <entry value="16" name="MAV_MODE_FLAG_STABILIZE_ENABLED">
+        <description>0b00010000 system stabilizes electronically its attitude (and optionally position). It needs however further control inputs to move around.</description>
+      </entry>
+      <entry value="8" name="MAV_MODE_FLAG_GUIDED_ENABLED">
+        <description>0b00001000 guided mode enabled, system flies waypoints / mission items.</description>
+      </entry>
+      <entry value="4" name="MAV_MODE_FLAG_AUTO_ENABLED">
+        <description>0b00000100 autonomous mode enabled, system finds its own goal positions. Guided flag can be set or not, depends on the actual implementation.</description>
+      </entry>
+      <entry value="2" name="MAV_MODE_FLAG_TEST_ENABLED">
+        <description>0b00000010 system has a test mode enabled. This flag is intended for temporary system tests and should not be used for stable implementations.</description>
+      </entry>
+      <entry value="1" name="MAV_MODE_FLAG_CUSTOM_MODE_ENABLED">
+        <description>0b00000001 Reserved for future use.</description>
+      </entry>
+    </enum>
+    <enum name="MAV_MODE_FLAG_DECODE_POSITION" bitmask="true">
+      <description>These values encode the bit positions of the decode position. These values can be used to read the value of a flag bit by combining the base_mode variable with AND with the flag position value. The result will be either 0 or 1, depending on if the flag is set or not.</description>
+      <entry value="128" name="MAV_MODE_FLAG_DECODE_POSITION_SAFETY">
+        <description>First bit:  10000000</description>
+      </entry>
+      <entry value="64" name="MAV_MODE_FLAG_DECODE_POSITION_MANUAL">
+        <description>Second bit: 01000000</description>
+      </entry>
+      <entry value="32" name="MAV_MODE_FLAG_DECODE_POSITION_HIL">
+        <description>Third bit:  00100000</description>
+      </entry>
+      <entry value="16" name="MAV_MODE_FLAG_DECODE_POSITION_STABILIZE">
+        <description>Fourth bit: 00010000</description>
+      </entry>
+      <entry value="8" name="MAV_MODE_FLAG_DECODE_POSITION_GUIDED">
+        <description>Fifth bit:  00001000</description>
+      </entry>
+      <entry value="4" name="MAV_MODE_FLAG_DECODE_POSITION_AUTO">
+        <description>Sixth bit:   00000100</description>
+      </entry>
+      <entry value="2" name="MAV_MODE_FLAG_DECODE_POSITION_TEST">
+        <description>Seventh bit: 00000010</description>
+      </entry>
+      <entry value="1" name="MAV_MODE_FLAG_DECODE_POSITION_CUSTOM_MODE">
+        <description>Eighth bit: 00000001</description>
+      </entry>
+    </enum>
+    <enum name="MAV_STATE">
+      <entry value="0" name="MAV_STATE_UNINIT">
+        <description>Uninitialized system, state is unknown.</description>
+      </entry>
+      <entry value="1" name="MAV_STATE_BOOT">
+        <description>System is booting up.</description>
+      </entry>
+      <entry value="2" name="MAV_STATE_CALIBRATING">
+        <description>System is calibrating and not flight-ready.</description>
+      </entry>
+      <entry value="3" name="MAV_STATE_STANDBY">
+        <description>System is grounded and on standby. It can be launched any time.</description>
+      </entry>
+      <entry value="4" name="MAV_STATE_ACTIVE">
+        <description>System is active and might be already airborne. Motors are engaged.</description>
+      </entry>
+      <entry value="5" name="MAV_STATE_CRITICAL">
+        <description>System is in a non-normal flight mode (failsafe). It can however still navigate.</description>
+      </entry>
+      <entry value="6" name="MAV_STATE_EMERGENCY">
+        <description>System is in a non-normal flight mode (failsafe). It lost control over parts or over the whole airframe. It is in mayday and going down.</description>
+      </entry>
+      <entry value="7" name="MAV_STATE_POWEROFF">
+        <description>System just initialized its power-down sequence, will shut down now.</description>
+      </entry>
+      <entry value="8" name="MAV_STATE_FLIGHT_TERMINATION">
+        <description>System is terminating itself (failsafe or commanded).</description>
+      </entry>
+    </enum>
+
+    <enum name="MAV_SYSTEM">
+      <description>System ID names</description>
+      <entry value="0" name="MAV_SYS_ID_ALL">
+        <description>Target id (target_component) used to broadcast messages to all components of the receiving system. Components should attempt to process messages with this component ID and forward to components on any other interfaces. Note: This is not a valid *source* component id for a message.</description>
+      </entry>
+      <entry value="1" name="MAV_SYS_ROCKET">
+        <description>System flight controller component ("autopilot"). Only one autopilot is expected in a particular system.</description>
+      </entry>
+      <!-- Component ids from 25-99 are reserved for private OEM component definitions (and may be incompatible with other private components). Note that if this range is later reduced, higher ids will be reallocated first. -->
+      <entry value="2" name="MAV_SYS_GSE">
+        <description>System flight controller component ("autopilot"). Only one autopilot is expected in a particular system.</description>
+      </entry>
+
+      <entry value="3" name="MAV_SYS_COMMAND_CENTER">
+        <description>System flight controller component ("autopilot"). Only one autopilot is expected in a particular system.</description>
+      </entry>
+
+    </enum>
+
+    <enum name="MAV_COMPONENT">
+      <description>Component ids (values) for the different types and instances of onboard hardware/software that might make up a MAVLink system (autopilot, cameras, servos, GPS systems, avoidance systems etc.).
+      Components must use the appropriate ID in their source address when sending messages. Components can also use IDs to determine if they are the intended recipient of an incoming message. The MAV_COMP_ID_ALL value is used to indicate messages that must be processed by all components.
+      When creating new entries, components that can have multiple instances (e.g. cameras, servos etc.) should be allocated sequential values. An appropriate number of values should be left free after these components to allow the number of instances to be expanded.</description>
+      <entry value="0" name="MAV_COMP_ID_ALL">
+        <description>Target id (target_component) used to broadcast messages to all components of the receiving system. Components should attempt to process messages with this component ID and forward to components on any other interfaces. Note: This is not a valid *source* component id for a message.</description>
+      </entry>
+      <entry value="1" name="MAV_COMP_ID_AUTOPILOT1">
+        <description>System flight controller component ("autopilot"). Only one autopilot is expected in a particular system.</description>
+      </entry>
+      <!-- Component ids from 25-99 are reserved for private OEM component definitions (and may be incompatible with other private components). Note that if this range is later reduced, higher ids will be reallocated first. -->
+      <entry value="10" name="MAV_COMP_ID_ZORA_RECOVERY">
+        <description>Id for a component on privately managed MAVLink network. Can be used for any purpose but may not be published by components outside of the private network.</description>
+      </entry>
+
+      <entry value="11" name="MAV_COMP_ID_ZORA_PRESSURISER">
+        <description>Id for a component on privately managed MAVLink network. Can be used for any purpose but may not be published by components outside of the private network.</description>
+      </entry>
+
+      <entry value="12" name="MAV_COMP_ID_ZORA_ENGINE">
+        <description>Id for a component on privately managed MAVLink network. Can be used for any purpose but may not be published by components outside of the private network.</description>
+      </entry>
+
+      <entry value="13" name="MAV_COMP_ID_ROCKETLINK_ROCKET">
+        <description>Id for a component on privately managed MAVLink network. Can be used for any purpose but may not be published by components outside of the private network.</description>
+      </entry>
+
+      <entry value="14" name="MAV_COMP_ID_WIRELESS_CHARGER">
+        <description>Id for a component on privately managed MAVLink network. Can be used for any purpose but may not be published by components outside of the private network.</description>
+      </entry>
+
+      <entry value="15" name="MAV_COMP_ID_ARMIMG_BOARD">
+        <description>Id for a component on privately managed MAVLink network. Can be used for any purpose but may not be published by components outside of the private network.</description>
+      </entry>
+
+      <entry value="100" name="MAV_COMP_ID_GSE_CONTROLLER">
+        <description>Id for a component on privately managed MAVLink network. Can be used for any purpose but may not be published by components outside of the private network.</description>
+      </entry>
+
+      <entry value="200" name="MAV_COMP_ID_ROCKETLINK_GROUND">
+        <description>Id for a component on privately managed MAVLink network. Can be used for any purpose but may not be published by components outside of the private network.</description>
+      </entry>
+
+      <entry value="201" name="MAV_COMP_ID_CC_COMPUTER">
+        <description>Id for a component on privately managed MAVLink network. Can be used for any purpose but may not be published by components outside of the private network.</description>
+      </entry>
+
+
+    </enum>
+    <enum name="MAV_FRAME">
+      <description>Coordinate frames used by MAVLink. Not all frames are supported by all commands, messages, or vehicles.
+
+      Global frames use the following naming conventions:
+      - "GLOBAL": Global coordinate frame with WGS84 latitude/longitude and altitude positive over mean sea level (MSL) by default.
+        The following modifiers may be used with "GLOBAL":
+        - "RELATIVE_ALT": Altitude is relative to the vehicle home position rather than MSL.
+        - "TERRAIN_ALT": Altitude is relative to ground level rather than MSL.
+        - "INT": Latitude/longitude (in degrees) are scaled by multiplying by 1E7.
+
+      Local frames use the following naming conventions:
+      - "LOCAL": Origin of local frame is fixed relative to earth. Unless otherwise specified this origin is the origin of the vehicle position-estimator ("EKF").
+      - "BODY": Origin of local frame travels with the vehicle. NOTE, "BODY" does NOT indicate alignment of frame axis with vehicle attitude.
+      - "OFFSET": Deprecated synonym for "BODY" (origin travels with the vehicle). Not to be used for new frames.
+
+      Some deprecated frames do not follow these conventions (e.g. MAV_FRAME_BODY_NED and MAV_FRAME_BODY_OFFSET_NED).
+        </description>
+      <entry value="0" name="MAV_FRAME_GLOBAL">
+        <description>Global (WGS84) coordinate frame + MSL altitude. First value / x: latitude, second value / y: longitude, third value / z: positive altitude over mean sea level (MSL).</description>
+      </entry>
+      <entry value="1" name="MAV_FRAME_LOCAL_NED">
+        <description>NED local tangent frame (x: North, y: East, z: Down) with origin fixed relative to earth.</description>
+      </entry>
+      <entry value="2" name="MAV_FRAME_MISSION">
+        <description>NOT a coordinate frame, indicates a mission command.</description>
+      </entry>
+      <entry value="3" name="MAV_FRAME_GLOBAL_RELATIVE_ALT">
+        <description>
+          Global (WGS84) coordinate frame + altitude relative to the home position.
+          First value / x: latitude, second value / y: longitude, third value / z: positive altitude with 0 being at the altitude of the home position.
+        </description>
+      </entry>
+      <entry value="4" name="MAV_FRAME_LOCAL_ENU">
+        <description>ENU local tangent frame (x: East, y: North, z: Up) with origin fixed relative to earth.</description>
+      </entry>
+      <entry value="5" name="MAV_FRAME_GLOBAL_INT">
+        <description>Global (WGS84) coordinate frame (scaled) + MSL altitude. First value / x: latitude in degrees*1E7, second value / y: longitude in degrees*1E7, third value / z: positive altitude over mean sea level (MSL).</description>
+      </entry>
+    </enum>
+    <enum name="MAV_RESULT">
+      <description>Result from a MAVLink command (MAV_CMD)</description>
+      <entry value="0" name="MAV_RESULT_ACCEPTED">
+        <description>Command is valid (is supported and has valid parameters), and was executed.</description>
+      </entry>
+      <entry value="1" name="MAV_RESULT_TEMPORARILY_REJECTED">
+        <description>Command is valid, but cannot be executed at this time. This is used to indicate a problem that should be fixed just by waiting (e.g. a state machine is busy, can't arm because have not got GPS lock, etc.). Retrying later should work.</description>
+      </entry>
+      <entry value="2" name="MAV_RESULT_DENIED">
+        <description>Command is invalid (is supported but has invalid parameters). Retrying same command and parameters will not work.</description>
+      </entry>
+      <entry value="3" name="MAV_RESULT_UNSUPPORTED">
+        <description>Command is not supported (unknown).</description>
+      </entry>
+      <entry value="4" name="MAV_RESULT_FAILED">
+        <description>Command is valid, but execution has failed. This is used to indicate any non-temporary or unexpected problem, i.e. any problem that must be fixed before the command can succeed/be retried. For example, attempting to write a file when out of memory, attempting to arm when sensors are not calibrated, etc.</description>
+      </entry>
+      <entry value="5" name="MAV_RESULT_IN_PROGRESS">
+        <description>Command is valid and is being executed. This will be followed by further progress updates, i.e. the component may send further COMMAND_ACK messages with result MAV_RESULT_IN_PROGRESS (at a rate decided by the implementation), and must terminate by sending a COMMAND_ACK message with final result of the operation. The COMMAND_ACK.progress field can be used to indicate the progress of the operation.</description>
+      </entry>
+      <entry value="6" name="MAV_RESULT_CANCELLED">
+        <description>Command has been cancelled (as a result of receiving a COMMAND_CANCEL message).</description>
+      </entry>
+      <entry value="7" name="MAV_RESULT_COMMAND_LONG_ONLY">
+        <description>Command is only accepted when sent as a COMMAND_LONG.</description>
+      </entry>
+      <entry value="8" name="MAV_RESULT_COMMAND_INT_ONLY">
+        <description>Command is only accepted when sent as a COMMAND_INT.</description>
+      </entry>
+      <entry value="9" name="MAV_RESULT_COMMAND_UNSUPPORTED_MAV_FRAME">
+        <description>Command is invalid because a frame is required and the specified frame is not supported.</description>
+      </entry>
+    </enum>
+    <enum name="MAV_CMD">
+      <description>Commands to be executed by the MAV. They can be executed on user request, or as part of a mission script. If the action is used in a mission, the parameter mapping to the waypoint/mission message is as follows: Param 1, Param 2, Param 3, Param 4, X: Param 5, Y:Param 6, Z:Param 7. This command list is similar what ARINC 424 is for commercial aircraft: A data format how to interpret waypoint/mission data. NaN and INT32_MAX may be used in float/integer params (respectively) to indicate optional/default values (e.g. to use the component's current yaw or latitude rather than a specific value). See https://mavlink.io/en/guide/xml_schema.html#MAV_CMD for information about the structure of the MAV_CMD entries</description>
+      <entry value="512" name="MAV_CMD_REQUEST_MESSAGE" hasLocation="false" isDestination="false">
+        <description>Request the target system(s) emit a single instance of a specified message (i.e. a "one-shot" version of MAV_CMD_SET_MESSAGE_INTERVAL).</description>
+        <param index="1" label="Message ID" minValue="0" maxValue="16777215" increment="1">The MAVLink message ID of the requested message.</param>
+        <param index="2" label="Req Param 1">Use for index ID, if required. Otherwise, the use of this parameter (if any) must be defined in the requested message. By default assumed not used (0).</param>
+        <param index="3" label="Req Param 2">The use of this parameter (if any), must be defined in the requested message. By default assumed not used (0).</param>
+        <param index="4" label="Req Param 3">The use of this parameter (if any), must be defined in the requested message. By default assumed not used (0).</param>
+        <param index="5" label="Req Param 4">The use of this parameter (if any), must be defined in the requested message. By default assumed not used (0).</param>
+        <param index="6" label="Req Param 5">The use of this parameter (if any), must be defined in the requested message. By default assumed not used (0).</param>
+        <param index="7" label="Response Target" minValue="0" maxValue="2" increment="1">Target address for requested message (if message has target address fields). 0: Flight-stack default, 1: address of requestor, 2: broadcast.</param>
+      </entry>
+
+      <entry value="100" name="MAV_CMD_SET_LEDS" hasLocation="false" isDestination="false">
+        <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
+        <description> Setting LEDs in ZORAs
+        </description>
+        <param index="1" label="Green LED"> HIGH / LOW </param>
+        <param index="2" label="Orange LED"> HIGH / LOW </param>
+        <param index="3" label="Red LED"> HIGH / LOW </param>
+
+        <param index="4" label="unused"> unused </param>
+        <param index="5" label="unused"> unused </param>
+        <param index="6" label="unused"> unused </param>
+        <param index="7" label="unused"> unused </param>
+      </entry>
+    </enum>
+  </enums>
+  <messages>
+    <message id="0" name="HEARTBEAT">
+      <description>The heartbeat message shows that a system or component is present and responding. The type and autopilot fields (along with the message component id), allow the receiving system to treat further messages from this system appropriately (e.g. by laying out the user interface based on the autopilot). This microservice is documented at https://mavlink.io/en/services/heartbeat.html</description>
+      <field type="uint8_t" name="type" enum="MAV_TYPE">Vehicle or component type. For a flight controller component the vehicle type (quadrotor, helicopter, etc.). For other components the component type (e.g. camera, gimbal, etc.). This should be used in preference to component id for identifying the component type.</field>
+      <field type="uint8_t" name="autopilot" enum="MAV_AUTOPILOT">Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight controllers.</field>
+      <field type="uint8_t" name="base_mode" enum="MAV_MODE_FLAG" display="bitmask">System mode bitmap.</field>
+      <field type="uint32_t" name="custom_mode">A bitfield for use for autopilot-specific flags</field>
+      <field type="uint8_t" name="system_status" enum="MAV_STATE">System status flag.</field>
+      <field type="uint8_t_mavlink_version" name="mavlink_version">MAVLink version, not writable by user, gets added by protocol because of magic data type: uint8_t_mavlink_version</field>
+    </message>
+
+    <message id="10" name="ZORA_LED_STATUS">
+      <description> Testing message</description>
+      <field type="uint8_t" name="target_system" enum="MAV_SYSTEM">System ID</field>
+      <field type="uint8_t" name="target_component" enum="MAV_COMPONENT">Component ID</field>
+      
+      <field type="uint8_t" name="LED_GREEN_STATUS">LED Green status</field>
+      <field type="uint8_t" name="LED_ORANGE_STATUS">LED Green status</field>
+      <field type="uint8_t" name="LED_RED_STATUS">LED Green status</field>
+    </message>
+
+    <message id="75" name="COMMAND_INT">
+      <description>Send a command with up to seven parameters to the MAV, where params 5 and 6 are integers and the other values are floats. This is preferred over COMMAND_LONG as it allows the MAV_FRAME to be specified for interpreting positional information, such as altitude. COMMAND_INT is also preferred when sending latitude and longitude data in params 5 and 6, as it allows for greater precision. Param 5 and 6 encode positional data as scaled integers, where the scaling depends on the actual command value. NaN or INT32_MAX may be used in float/integer params (respectively) to indicate optional/default values (e.g. to use the component's current latitude, yaw rather than a specific value). The command microservice is documented at https://mavlink.io/en/services/command.html</description>
+      <field type="uint8_t" name="target_system">System ID</field>
+      <field type="uint8_t" name="target_component">Component ID</field>
+      <field type="uint8_t" name="frame" enum="MAV_FRAME">The coordinate system of the COMMAND.</field>
+      <field type="uint16_t" name="command" enum="MAV_CMD">The scheduled action for the mission item.</field>
+      <field type="uint8_t" name="current">Not used.</field>
+      <field type="uint8_t" name="autocontinue">Not used (set 0).</field>
+      <field type="float" name="param1" invalid="NaN">PARAM1, see MAV_CMD enum</field>
+      <field type="float" name="param2" invalid="NaN">PARAM2, see MAV_CMD enum</field>
+      <field type="float" name="param3" invalid="NaN">PARAM3, see MAV_CMD enum</field>
+      <field type="float" name="param4" invalid="NaN">PARAM4, see MAV_CMD enum</field>
+      <field type="int32_t" name="x" invalid="INT32_MAX">PARAM5 / local: x position in meters * 1e4, global: latitude in degrees * 10^7</field>
+      <field type="int32_t" name="y" invalid="INT32_MAX">PARAM6 / local: y position in meters * 1e4, global: longitude in degrees * 10^7</field>
+      <field type="float" name="z" invalid="NaN">PARAM7 / z position: global: altitude in meters (relative or absolute, depending on frame).</field>
+    </message>
+    <message id="76" name="COMMAND_LONG">
+      <description>Send a command with up to seven parameters to the MAV. COMMAND_INT is generally preferred when sending MAV_CMD commands that include positional information; it offers higher precision and allows the MAV_FRAME to be specified (which may otherwise be ambiguous, particularly for altitude). The command microservice is documented at https://mavlink.io/en/services/command.html</description>
+      <field type="uint8_t" name="target_system">System which should execute the command</field>
+      <field type="uint8_t" name="target_component">Component which should execute the command, 0 for all components</field>
+      <field type="uint16_t" name="command" enum="MAV_CMD">Command ID (of command to send).</field>
+      <field type="uint8_t" name="confirmation">0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)</field>
+      <field type="float" name="param1" invalid="NaN">Parameter 1 (for the specific command).</field>
+      <field type="float" name="param2" invalid="NaN">Parameter 2 (for the specific command).</field>
+      <field type="float" name="param3" invalid="NaN">Parameter 3 (for the specific command).</field>
+      <field type="float" name="param4" invalid="NaN">Parameter 4 (for the specific command).</field>
+      <field type="float" name="param5" invalid="NaN">Parameter 5 (for the specific command).</field>
+      <field type="float" name="param6" invalid="NaN">Parameter 6 (for the specific command).</field>
+      <field type="float" name="param7" invalid="NaN">Parameter 7 (for the specific command).</field>
+    </message>
+    <message id="77" name="COMMAND_ACK">
+      <description>Report status of a command. Includes feedback whether the command was executed. The command microservice is documented at https://mavlink.io/en/services/command.html</description>
+      <field type="uint16_t" name="command" enum="MAV_CMD">Command ID (of acknowledged command).</field>
+      <field type="uint8_t" name="result" enum="MAV_RESULT">Result of command.</field>
+      <extensions/>
+      <field type="uint8_t" name="progress" invalid="UINT8_MAX" units="%">The progress percentage when result is MAV_RESULT_IN_PROGRESS. Values: [0-100], or UINT8_MAX if the progress is unknown.</field>
+      <field type="int32_t" name="result_param2">Additional result information. Can be set with a command-specific enum containing command-specific error reasons for why the command might be denied. If used, the associated enum must be documented in the corresponding MAV_CMD (this enum should have a 0 value to indicate "unused" or "unknown").</field>
+      <field type="uint8_t" name="target_system">System ID of the target recipient. This is the ID of the system that sent the command for which this COMMAND_ACK is an acknowledgement.</field>
+      <field type="uint8_t" name="target_component">Component ID of the target recipient. This is the ID of the system that sent the command for which this COMMAND_ACK is an acknowledgement.</field>
+    </message>
+    <message id="80" name="COMMAND_CANCEL">
+      <wip/>
+      <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
+      <description>Cancel a long running command. The target system should respond with a COMMAND_ACK to the original command with result=MAV_RESULT_CANCELLED if the long running process was cancelled. If it has already completed, the cancel action can be ignored. The cancel action can be retried until some sort of acknowledgement to the original command has been received. The command microservice is documented at https://mavlink.io/en/services/command.html</description>
+      <field type="uint8_t" name="target_system">System executing long running command. Should not be broadcast (0).</field>
+      <field type="uint8_t" name="target_component">Component executing long running command.</field>
+      <field type="uint16_t" name="command" enum="MAV_CMD">Command ID (of command to cancel).</field>
+    </message>
+    <message id="300" name="PROTOCOL_VERSION">
+      <wip/>
+      <!-- This message is work-in-progress and it can therefore change. It should NOT be used in stable production environments. -->
+      <description>Version and capability of protocol version. This message can be requested with MAV_CMD_REQUEST_MESSAGE and is used as part of the handshaking to establish which MAVLink version should be used on the network. Every node should respond to a request for PROTOCOL_VERSION to enable the handshaking. Library implementers should consider adding this into the default decoding state machine to allow the protocol core to respond directly.</description>
+      <field type="uint16_t" name="version">Currently active MAVLink version number * 100: v1.0 is 100, v2.0 is 200, etc.</field>
+      <field type="uint16_t" name="min_version">Minimum MAVLink version supported</field>
+      <field type="uint16_t" name="max_version">Maximum MAVLink version supported (set to the same value as version by default)</field>
+      <field type="uint8_t[8]" name="spec_version_hash">The first 8 bytes (not characters printed in hex!) of the git hash.</field>
+      <field type="uint8_t[8]" name="library_version_hash">The first 8 bytes (not characters printed in hex!) of the git hash.</field>
+    </message>
+  </messages>
+  
+</mavlink>
