@@ -469,9 +469,6 @@
 
     <message id="10" name="ZORA_LED_STATUS">
       <description> Testing message</description>
-      <field type="uint8_t" name="target_system" enum="MAV_SYSTEM">System ID</field>
-      <field type="uint8_t" name="target_component" enum="MAV_COMPONENT">Component ID</field>
-      
       <field type="uint8_t" name="LED_GREEN_STATUS">LED Green status</field>
       <field type="uint8_t" name="LED_ORANGE_STATUS">LED Green status</field>
       <field type="uint8_t" name="LED_RED_STATUS">LED Green status</field>

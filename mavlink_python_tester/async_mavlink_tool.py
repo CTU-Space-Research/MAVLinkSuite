@@ -122,7 +122,6 @@ HB = System.heartbeat_encode(dialect.MAV_TYPE_ROCKET,
                                                 dialect.MAV_STATE_STANDBY);
 System.send(HB)
 print("Send: HEARTBEAT")
-
 Reader = SerialPortReadThead(serialPort);
 Reader.start()
 
@@ -132,7 +131,7 @@ try:
     print("Send: MAV_CMD_REQUEST_MESSAGE -> PROTOCOL_VERSION")
 
 
-    RequestLEDstatus = System.command_long_encode(targetSystem.SystemId,targetSystem.ComponentId,dialect.MAV_CMD_SET_LEDS,0,1,0,1,0,0,0,0);
+    RequestLEDstatus = System.command_long_encode(targetSystem.SystemId,targetSystem.ComponentId,dialect.MAV_CMD_SET_LEDS,0,0,0,1,0,0,0,0);
     System.send(RequestLEDstatus)
     print("Send: MAV_CMD_SET_LEDS")
 

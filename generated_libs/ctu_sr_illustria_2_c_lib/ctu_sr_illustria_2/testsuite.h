@@ -101,12 +101,10 @@ static void mavlink_test_zora_led_status(uint8_t system_id, uint8_t component_id
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_zora_led_status_t packet_in = {
-        5,72,139,206,17
+        5,72,139
     };
     mavlink_zora_led_status_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
-        packet1.target_system = packet_in.target_system;
-        packet1.target_component = packet_in.target_component;
         packet1.LED_GREEN_STATUS = packet_in.LED_GREEN_STATUS;
         packet1.LED_ORANGE_STATUS = packet_in.LED_ORANGE_STATUS;
         packet1.LED_RED_STATUS = packet_in.LED_RED_STATUS;
@@ -124,12 +122,12 @@ static void mavlink_test_zora_led_status(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_zora_led_status_pack(system_id, component_id, &msg , packet1.target_system , packet1.target_component , packet1.LED_GREEN_STATUS , packet1.LED_ORANGE_STATUS , packet1.LED_RED_STATUS );
+    mavlink_msg_zora_led_status_pack(system_id, component_id, &msg , packet1.LED_GREEN_STATUS , packet1.LED_ORANGE_STATUS , packet1.LED_RED_STATUS );
     mavlink_msg_zora_led_status_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_zora_led_status_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.target_system , packet1.target_component , packet1.LED_GREEN_STATUS , packet1.LED_ORANGE_STATUS , packet1.LED_RED_STATUS );
+    mavlink_msg_zora_led_status_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.LED_GREEN_STATUS , packet1.LED_ORANGE_STATUS , packet1.LED_RED_STATUS );
     mavlink_msg_zora_led_status_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -142,7 +140,7 @@ static void mavlink_test_zora_led_status(uint8_t system_id, uint8_t component_id
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_zora_led_status_send(MAVLINK_COMM_1 , packet1.target_system , packet1.target_component , packet1.LED_GREEN_STATUS , packet1.LED_ORANGE_STATUS , packet1.LED_RED_STATUS );
+    mavlink_msg_zora_led_status_send(MAVLINK_COMM_1 , packet1.LED_GREEN_STATUS , packet1.LED_ORANGE_STATUS , packet1.LED_RED_STATUS );
     mavlink_msg_zora_led_status_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 

@@ -715,34 +715,32 @@ class MAVLink_zora_led_status_message(MAVLink_message):
 
     id = MAVLINK_MSG_ID_ZORA_LED_STATUS
     msgname = "ZORA_LED_STATUS"
-    fieldnames = ["target_system", "target_component", "LED_GREEN_STATUS", "LED_ORANGE_STATUS", "LED_RED_STATUS"]
-    ordered_fieldnames = ["target_system", "target_component", "LED_GREEN_STATUS", "LED_ORANGE_STATUS", "LED_RED_STATUS"]
-    fieldtypes = ["uint8_t", "uint8_t", "uint8_t", "uint8_t", "uint8_t"]
+    fieldnames = ["LED_GREEN_STATUS", "LED_ORANGE_STATUS", "LED_RED_STATUS"]
+    ordered_fieldnames = ["LED_GREEN_STATUS", "LED_ORANGE_STATUS", "LED_RED_STATUS"]
+    fieldtypes = ["uint8_t", "uint8_t", "uint8_t"]
     fielddisplays_by_name: Dict[str, str] = {}
-    fieldenums_by_name: Dict[str, str] = {"target_system": "MAV_SYSTEM", "target_component": "MAV_COMPONENT"}
+    fieldenums_by_name: Dict[str, str] = {}
     fieldunits_by_name: Dict[str, str] = {}
-    native_format = bytearray(b"<BBBBB")
-    orders = [0, 1, 2, 3, 4]
-    lengths = [1, 1, 1, 1, 1]
-    array_lengths = [0, 0, 0, 0, 0]
-    crc_extra = 222
-    unpacker = struct.Struct("<BBBBB")
+    native_format = bytearray(b"<BBB")
+    orders = [0, 1, 2]
+    lengths = [1, 1, 1]
+    array_lengths = [0, 0, 0]
+    crc_extra = 53
+    unpacker = struct.Struct("<BBB")
     instance_field = None
     instance_offset = -1
 
-    def __init__(self, target_system: int, target_component: int, LED_GREEN_STATUS: int, LED_ORANGE_STATUS: int, LED_RED_STATUS: int):
+    def __init__(self, LED_GREEN_STATUS: int, LED_ORANGE_STATUS: int, LED_RED_STATUS: int):
         MAVLink_message.__init__(self, MAVLink_zora_led_status_message.id, MAVLink_zora_led_status_message.msgname)
         self._fieldnames = MAVLink_zora_led_status_message.fieldnames
         self._instance_field = MAVLink_zora_led_status_message.instance_field
         self._instance_offset = MAVLink_zora_led_status_message.instance_offset
-        self.target_system = target_system
-        self.target_component = target_component
         self.LED_GREEN_STATUS = LED_GREEN_STATUS
         self.LED_ORANGE_STATUS = LED_ORANGE_STATUS
         self.LED_RED_STATUS = LED_RED_STATUS
 
     def pack(self, mav: "MAVLink", force_mavlink1: bool = False) -> bytes:
-        return self._pack(mav, self.crc_extra, self.unpacker.pack(self.target_system, self.target_component, self.LED_GREEN_STATUS, self.LED_ORANGE_STATUS, self.LED_RED_STATUS), force_mavlink1=force_mavlink1)
+        return self._pack(mav, self.crc_extra, self.unpacker.pack(self.LED_GREEN_STATUS, self.LED_ORANGE_STATUS, self.LED_RED_STATUS), force_mavlink1=force_mavlink1)
 
 
 # Define name on the class for backwards compatibility (it is now msgname).
@@ -1464,31 +1462,27 @@ class MAVLink(object):
         """
         self.send(self.heartbeat_encode(type, autopilot, base_mode, custom_mode, system_status, mavlink_version), force_mavlink1=force_mavlink1)
 
-    def zora_led_status_encode(self, target_system: int, target_component: int, LED_GREEN_STATUS: int, LED_ORANGE_STATUS: int, LED_RED_STATUS: int) -> MAVLink_zora_led_status_message:
+    def zora_led_status_encode(self, LED_GREEN_STATUS: int, LED_ORANGE_STATUS: int, LED_RED_STATUS: int) -> MAVLink_zora_led_status_message:
         """
         Testing message
 
-        target_system             : System ID (type:uint8_t, values:MAV_SYSTEM)
-        target_component          : Component ID (type:uint8_t, values:MAV_COMPONENT)
         LED_GREEN_STATUS          : LED Green status (type:uint8_t)
         LED_ORANGE_STATUS         : LED Green status (type:uint8_t)
         LED_RED_STATUS            : LED Green status (type:uint8_t)
 
         """
-        return MAVLink_zora_led_status_message(target_system, target_component, LED_GREEN_STATUS, LED_ORANGE_STATUS, LED_RED_STATUS)
+        return MAVLink_zora_led_status_message(LED_GREEN_STATUS, LED_ORANGE_STATUS, LED_RED_STATUS)
 
-    def zora_led_status_send(self, target_system: int, target_component: int, LED_GREEN_STATUS: int, LED_ORANGE_STATUS: int, LED_RED_STATUS: int, force_mavlink1: bool = False) -> None:
+    def zora_led_status_send(self, LED_GREEN_STATUS: int, LED_ORANGE_STATUS: int, LED_RED_STATUS: int, force_mavlink1: bool = False) -> None:
         """
         Testing message
 
-        target_system             : System ID (type:uint8_t, values:MAV_SYSTEM)
-        target_component          : Component ID (type:uint8_t, values:MAV_COMPONENT)
         LED_GREEN_STATUS          : LED Green status (type:uint8_t)
         LED_ORANGE_STATUS         : LED Green status (type:uint8_t)
         LED_RED_STATUS            : LED Green status (type:uint8_t)
 
         """
-        self.send(self.zora_led_status_encode(target_system, target_component, LED_GREEN_STATUS, LED_ORANGE_STATUS, LED_RED_STATUS), force_mavlink1=force_mavlink1)
+        self.send(self.zora_led_status_encode(LED_GREEN_STATUS, LED_ORANGE_STATUS, LED_RED_STATUS), force_mavlink1=force_mavlink1)
 
     def command_int_encode(self, target_system: int, target_component: int, frame: int, command: int, current: int, autocontinue: int, param1: float, param2: float, param3: float, param4: float, x: int, y: int, z: float) -> MAVLink_command_int_message:
         """
