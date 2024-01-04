@@ -105,6 +105,9 @@ def _readMAVLinkMessagesBlocking(serial_port):
         recievedMsg = readIncommingMessages(serial_port=serial_port)
         print("Received:",recievedMsg)
 
+
+#MAV_IGNORE_CRC = True
+
 serialPort = openSerial(port_name,baud_rate)
 
 #setup system with a connection
