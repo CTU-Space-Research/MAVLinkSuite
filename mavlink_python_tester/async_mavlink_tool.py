@@ -133,19 +133,52 @@ try:
     System.send(RequestProtocol)
     print("Send: MAV_CMD_REQUEST_MESSAGE -> PROTOCOL_VERSION")
 
-
-    RequestLEDstatus = System.command_long_encode(targetSystem.SystemId,targetSystem.ComponentId,dialect.MAV_CMD_SET_LEDS,0,0,0,1,0,0,0,0);
-    System.send(RequestLEDstatus)
-    print("Send: MAV_CMD_SET_LEDS")
-
     time.sleep(1);
 
-    RequestLEDstatus = System.command_long_encode(targetSystem.SystemId,targetSystem.ComponentId,dialect.MAV_CMD_SET_LEDS,0,1,1,1,0,0,0,0);
-    System.send(RequestLEDstatus)
-    print("Send: MAV_CMD_SET_LEDS")
+    RequestLEDstatus = System.command_long_encode(targetSystem.SystemId,targetSystem.ComponentId,dialect.MAV_CMD_REQUEST_MESSAGE,0,dialect.MAVLINK_MSG_ID_ZORA_LED_STATUS ,0,0,0,0,0,0)
+
+    index = 4
+    G = int(bool(index % 1) == 1)
+    O = int(bool(index % 2) == 1)
+    R = int(bool(index % 3) == 1)
+
+    SetLEDStatus = System.command_long_encode(targetSystem.SystemId,targetSystem.ComponentId,dialect.MAV_CMD_SET_LEDS,0,G,O,R,0,0,0,0);
+    System.send(SetLEDStatus)
+    print("Send: MAV_CMD_SET_LEDS - G:",G," O:", O, " R:",R);
+
+    index = 0
 
     while 1:
-        time.sleep(1.5)   
+        print("\n \n \n--------------------------------------------------- ")
+        index += 1
+
+        
+        System.send(RequestProtocol)
+        print("Send: MAV_CMD_REQUEST_MESSAGE -> PROTOCOL_VERSION")
+
+        time.sleep(0.7);    
+
+        System.send(RequestLEDstatus)
+        print("Send: MAV_CMD_REQUEST_MESSAGE -> LED_STATUS")
+
+        time.sleep(0.5);    
+
+        G = int(bool(index % 1) == 1)
+        O = int(bool(index % 2) == 1)
+        R = int(bool(index % 3) == 1)
+
+        SetLEDStatus = System.command_long_encode(targetSystem.SystemId,targetSystem.ComponentId,dialect.MAV_CMD_SET_LEDS,0,G,O,R,0,0,0,0);
+        System.send(SetLEDStatus)
+        print("Send: MAV_CMD_SET_LEDS - G:",G," O:", O, " R:",R);
+
+        time.sleep(0.6)   
+
+        System.send(RequestLEDstatus)
+        print("Send: MAV_CMD_REQUEST_MESSAGE -> LED_STATUS")
+
+        time.sleep(0.5);    
+
+
 
 except KeyboardInterrupt:
     Reader.stop();

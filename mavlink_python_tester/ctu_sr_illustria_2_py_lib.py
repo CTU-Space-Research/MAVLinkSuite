@@ -1336,6 +1336,7 @@ class MAVLink(object):
             crcbuf.append(crc_extra)
         crc2 = x25crc(crcbuf)
         if crc != crc2.crc and not MAVLINK_IGNORE_CRC:
+            print("invalid MAVLink CRC in message %s msgID %u 0x%04x should be 0x%04x" % (msgtype.msgname ,msgId, crc, crc2.crc))
             raise MAVError("invalid MAVLink CRC in msgID %u 0x%04x should be 0x%04x" % (msgId, crc, crc2.crc))
 
         sig_ok = False
